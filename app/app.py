@@ -1,15 +1,13 @@
-import uvicorn
-from fastapi import FastAPI
-from fastapi.responses import JSONResponse
+from flask import Flask, jsonify
+import socket
 
-app = FastAPI()
+app = Flask(__name__)
 
-@app.get("/")
-def home():
-    return {"Hello": "World"}
+@app.route('/')
+def get_instance_info():
+    instance_id = socket.gethostname()
+    public_ip = socket.gethostbyname(instance_id)
+    return jsonify(instanceId=instance_id, publicIp=public_ip)
 
-if __name__ == "__main__":
-    uvicorn.run("fastapi_code:app")
-
-
-
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)

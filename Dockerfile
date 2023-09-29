@@ -1,11 +1,16 @@
-FROM python:3.8-slim
+FROM python:3.9
 
 WORKDIR /app
 
-COPY app/app.py /app/app.py
+COPY app/requirements.txt /app/requirements.txt
+COPY app/backend.py /app/backend.py
 
-RUN pip install -r fastapi uvicorn
+RUN pip install -r requirements.txt
 
-EXPOSE 8080
+ENV FLASK_APP=backend.py
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
+ENV FLASK_RUN_HOST=0.0.0.0
+
+ENV FLASK_RUN_PORT=8080
+
+CMD ["flask", "run"]
