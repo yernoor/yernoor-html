@@ -4,10 +4,6 @@ os: linux
 files:
   - source: scripts
     destination: /home/ec2-user/project
-  - source: index.html
-    destination: /home/ec2-user/project
-  - source: Dockerfile
-    destination: /home/ec2-user/project
   - source: app
     destination: /home/ec2-user/project/app
 hooks:
