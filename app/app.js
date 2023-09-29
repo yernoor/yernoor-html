@@ -35,7 +35,7 @@ const server = http.createServer(async (req, res) => {
             }
         }
     );
-    const ipResult = await idResponse.text();
+    const ipResult = await ipResponse.text();
        
     
 
