@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+
+files:
+  - source: scripts
+    destination: /home/ec2-user/project
+  - source: index.html
+    destination: /home/ec2-user/project
+  - source: Dockerfile
+    destination: /home/ec2-user/project
+  - source: app
+    destination: /home/ec2-user/project/app
+hooks:
+  BeforeInstall:
+    - location: scripts/before_install.sh
+  AfterInstall:
+    - location: scripts/after_install.sh
+  ApplicationStart:
+    - location: scripts/deploy_frontend.sh
+##  ValidateService:
+##    - location: scripts/deploy_backend.sh
